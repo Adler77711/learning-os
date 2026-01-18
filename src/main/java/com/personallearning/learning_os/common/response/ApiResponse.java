@@ -1,6 +1,11 @@
 package com.personallearning.learning_os.common.response;
 
 import java.time.Instant;
+import java.util.List;
+
+import org.springframework.data.domain.Page;
+
+import com.personallearning.learning_os.dto.ActivityResponse;
 
 public class ApiResponse<T> {
     private boolean success;
@@ -8,6 +13,7 @@ public class ApiResponse<T> {
     private ApiError error;
     private Instant timestamp;
 
+    // public static <T> ApiResponse<List<ActivityResponse>> ok(T data) {
     public static <T> ApiResponse<T> ok(T data) {
         ApiResponse<T> r = new ApiResponse<>();
         r.success = true;

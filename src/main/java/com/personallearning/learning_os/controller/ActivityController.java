@@ -30,10 +30,11 @@ public class ActivityController {
         return service.create(request);
     }
 
-    @GetMapping
-    // public List<ActivityResponse> list() {
-    //     return service.list();
-    // }
+    @GetMapping("/api/activities")
+    public List<ActivityResponse> list() {
+        return service.list();
+    }
+    @GetMapping(value = "/api/activities", params = "q")
     public ApiResponse<Page<ActivityResponse>> search(
             @RequestParam(required = false) ActivityType type,
             @RequestParam(required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate from,
@@ -43,5 +44,6 @@ public class ActivityController {
             @RequestParam(defaultValue = "10") int size
     ) {
         return ApiResponse.ok(service.search(type, from, to, q, page, size));
+        // return ApiResponse.ok(service.search(type, from, to, q, page, size).getContent());
     }
 }
